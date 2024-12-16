@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Control Structures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 30px;
+        }
+        h1, h2 {
+            color: #ba3e00;
+            padding-top: 30px;
+        }
+        h3{
+            padding-top: 20px;
+            color: #235ff8;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre; /* Ensures code is displayed in new lines */
+            overflow-x: auto;
+        }
+        .error {
+            background: #ffe6e6;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Control Structures</h1>
+
+    <h2>1. Conditionals</h2>
+    <p>Conditionals help control the flow of code based on conditions.</p>
+
+    <h3>if, else if, and else</h3>
+    <code>
+let age = 20;
+
+if (age < 18) {
+    console.log("You are a minor.");
+} else if (age >= 18 && age < 60) {
+    console.log("You are an adult.");
+} else {
+    console.log("You are a senior citizen.");
+}
+    </code>
+
+    <h3>switch</h3>
+    <code>
+let day = 3;
+
+switch (day) {
+    case 1:
+        console.log("Monday");
+        break;
+    case 2:
+        console.log("Tuesday");
+        break;
+    case 3:
+        console.log("Wednesday");
+        break;
+    default:
+        console.log("Invalid day");
+}
+    </code>
+    <div class="error">
+        <code>
+// Error: Forgetting break can lead to fall-through
+let color = "blue";
+
+switch (color) {
+    case "red":
+        console.log("Red color");
+    case "blue": // Fall-through
+        console.log("Blue color");
+        break;
+} 
+// Output: Blue color (Correct) but also falls through if red is matched
+        </code>
+    </div>
+
+    <h2>2. Loops</h2>
+    <p>Loops are used to repeat blocks of code based on conditions.</p>
+
+    <h3>for loop</h3>
+    <code>
+for (let i = 0; i < 5; i++) {
+    console.log(i); // Output: 0, 1, 2, 3, 4
+}
+    </code>
+
+    <h3>while loop</h3>
+    <code>
+let count = 0;
+
+while (count < 3) {
+    console.log(count); // Output: 0, 1, 2
+    count++;
+}
+    </code>
+
+    <h3>do...while loop</h3>
+    <code>
+let num = 0;
+
+do {
+    console.log(num); // Output: 0 (executes at least once)
+    num++;
+} while (num < 3);
+    </code>
+
+    <h3>for...of loop</h3>
+    <p>Iterates over iterable objects like arrays.</p>
+    <code>
+let fruits = ["Apple", "Banana", "Cherry"];
+
+for (let fruit of fruits) {
+    console.log(fruit); // Output: Apple, Banana, Cherry
+}
+    </code>
+
+    <h2>3. Break and Continue</h2>
+    <p>Used to manage the flow of loops.</p>
+
+    <h3>Break</h3>
+    <p>Exits the loop prematurely when a condition is met.</p>
+    <code>
+for (let i = 0; i < 5; i++) {
+    if (i === 3) break;
+    console.log(i); // Output: 0, 1, 2
+}
+    </code>
+
+    <h3>Continue</h3>
+    <p>Skips the current iteration and moves to the next one.</p>
+    <code>
+for (let i = 0; i < 5; i++) {
+    if (i === 3) continue;
+    console.log(i); // Output: 0, 1, 2, 4
+}
+    </code>
+</body>
+</html>

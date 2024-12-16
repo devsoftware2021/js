@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events and Asynchronous Programming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 30px;
+        }
+        h1, h2 {
+            color: #ba3e00;
+            padding-top: 30px;
+        }
+        h3 {
+            padding-top: 20px;
+            color: #235ff8;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre; /* Ensures code is displayed in new lines */
+            overflow-x: auto;
+        }
+        .error {
+            background: #ffe6e6;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Events and Asynchronous Programming</h1>
+
+    <h2>1. Event Loop Basics</h2>
+    <p>In JavaScript, asynchronous tasks are handled using the event loop. The event loop allows JavaScript to perform non-blocking I/O operations by placing them in a message queue and executing them later.</p>
+    <code>
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Middle");
+}, 0);
+
+console.log("End");
+/* Output:
+Start
+End
+Middle
+*/
+    </code>
+    <p>Even though the <code>setTimeout()</code> function has a delay of 0 milliseconds, it gets placed in the event queue, and the JavaScript engine continues executing the code synchronously before handling the async task.</p>
+
+    <h2>2. Callbacks</h2>
+    <p>A callback is a function that gets passed as an argument to another function and is executed once that function completes its execution.</p>
+    <code>
+function fetchData(callback) {
+    setTimeout(() => {
+        console.log("Data fetched");
+        callback();
+    }, 1000);
+}
+
+fetchData(() => {
+    console.log("Callback executed");
+});
+/* Output:
+Data fetched
+Callback executed
+*/
+    </code>
+    <p>In the example above, the <code>fetchData</code> function accepts a callback and executes it after completing the asynchronous task (data fetching).</p>
+
+    <h2>3. Promises</h2>
+    <p>Promises are used to handle asynchronous operations and allow you to chain .<code>then()</code> and <code>catch()</code> methods for success or failure handling.</p>
+    <h3>Using .then() and .catch()</h3>
+    <code>
+const fetchDataPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const success = true; // Change this to false to see the error path
+        if (success) {
+            resolve("Data fetched successfully");
+        } else {
+            reject("Error fetching data");
+        }
+    }, 1000);
+});
+
+fetchDataPromise
+    .then((data) => {
+        console.log(data); // Output: Data fetched successfully
+    })
+    .catch((error) => {
+        console.log(error); // Output: Error fetching data (if success is false)
+    });
+    </code>
+    <p>A promise can either resolve (successful completion) or reject (error case). In the example above, we simulate data fetching with a success flag.</p>
+
+    <h2>4. Async/Await</h2>
+    <p><code>async</code> and <code>await</code> are syntactic sugar over promises that makes asynchronous code look more like synchronous code.</p>
+    <h3>Writing Asynchronous Code Cleanly</h3>
+    <code>
+async function fetchDataAsync() {
+    try {
+        const data = await fetchDataPromise;
+        console.log(data); // Output: Data fetched successfully
+    } catch (error) {
+        console.log(error); // Output: Error fetching data (if success is false)
+    }
+}
+
+fetchDataAsync();
+    </code>
+    <p>With the <code>async</code> function, we can use <code>await</code> to pause execution until the promise resolves, making the code cleaner and easier to understand compared to using <code>then()</code> and <code>catch()</code>.</p>
+
+    <h2>5. setTimeout() and setInterval()</h2>
+    <p>Both <code>setTimeout()</code> and <code>setInterval()</code> are used to handle time-based asynchronous operations. While <code>setTimeout()</code> runs the callback function once after a specified time, <code>setInterval()</code> repeatedly executes the callback at fixed intervals.</p>
+    
+    <h3>setTimeout()</h3>
+    <code>
+setTimeout(() => {
+    console.log("This message appears after 2 seconds");
+}, 2000);
+/* Output after 2 seconds:
+This message appears after 2 seconds
+*/
+    </code>
+    <p><code>setTimeout()</code> waits for a specified amount of time (in milliseconds) before executing the callback function.</p>
+
+    <h3>setInterval()</h3>
+    <code>
+let count = 0;
+const interval = setInterval(() => {
+    console.log("This message repeats every second");
+    count++;
+    if (count === 3) {
+        clearInterval(interval); // Stop the interval after 3 iterations
+    }
+}, 1000);
+/* Output every second:
+This message repeats every second
+This message repeats every second
+This message repeats every second
+*/
+    </code>
+    <p><code>setInterval()</code> repeatedly calls the provided function at the specified interval (in milliseconds), until it's stopped using <code>clearInterval()</code>.</p>
+
+    <h2>6. Common Errors and Invalid Options</h2>
+
+    <h3>1. Undefined Callback Function</h3>
+    <div class="error">
+        <code>
+setTimeout(callback, 1000); // Error: callback is not defined
+        </code>
+    </div>
+    <p>If you forget to define the callback function before passing it to <code>setTimeout()</code> or other functions that expect a callback, you'll get an error.</p>
+
+    <h3>2. Using Await Outside of Async Functions</h3>
+    <div class="error">
+        <code>
+const data = await fetchDataPromise; // Error: 'await' can only be used inside an 'async' function
+        </code>
+    </div>
+    <p><code>await</code> can only be used inside functions marked as <code>async</code>. Trying to use <code>await</code> outside of an async function will result in an error.</p>
+
+    <h3>3. Forgetting to Handle Promise Rejection</h3>
+    <div class="error">
+        <code>
+fetchDataPromise.then((data) => {
+    console.log(data);
+}); // Error: Unhandled promise rejection
+        </code>
+    </div>
+    <p>If a promise is rejected and the rejection is not handled using <code>catch()</code>, it will result in an unhandled promise rejection warning.</p>
+
+</body>
+</html>

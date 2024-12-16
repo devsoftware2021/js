@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //fucntion declaration
+        function clickEvent(){
+            alert("Click Event");
+        }
+
+        //function expression
+        let mouseOverEvent = function(){
+            alert("Mouse Over Event");
+        }
+
+        let mouseOutEvent = () => {
+            alert("Mouse Out Event");
+        }
+        
+    </script>
+</head>
+<body>
+    <h2>Functions Demo</h2>
+    <button onclick="clickEvent()">Click Event</button>
+    <button onmouseover="mouseOverEvent()">Mouse Over Event</button>
+    <button onmouseout="mouseOutEvent()">Mouse Out Event</button>
+</body>
+</html>

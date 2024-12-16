@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objects and Arrays</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 30px;
+        }
+        h1, h2 {
+            color: #ba3e00;
+            padding-top: 30px;
+        }
+        h3 {
+            padding-top: 20px;
+            color: #235ff8;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre; /* Ensures code is displayed in new lines */
+            overflow-x: auto;
+        }
+        .error {
+            background: #ffe6e6;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Objects and Arrays</h1>
+
+    <h2>1. Object Literals</h2>
+    <p>Objects are collections of key-value pairs, where keys are strings and values can be any data type.</p>
+    <code>
+const person = {
+    name: "John",
+    age: 30,
+    isMarried: true
+};
+
+console.log(person.name); // Output: John
+console.log(person.age);  // Output: 30
+    </code>
+    <p>In the example above, we define an object called <code>person</code> and access its properties using dot notation (e.g., <code>person.name</code>).</p>
+
+    <h2>2. Array Manipulation</h2>
+    <p>Arrays are used to store multiple values in a single variable. Here are some common methods:</p>
+    <h3>push()</h3>
+    <code>
+const fruits = ["Apple", "Banana"];
+fruits.push("Orange");
+console.log(fruits); // Output: ["Apple", "Banana", "Orange"]
+    </code>
+    <p>The <code>push()</code> method adds an item to the end of the array.</p>
+    
+    <h3>pop()</h3>
+    <code>
+fruits.pop();
+console.log(fruits); // Output: ["Apple", "Banana"]
+    </code>
+    <p>The <code>pop()</code> method removes the last item from the array.</p>
+    
+    <h3>shift()</h3>
+    <code>
+fruits.shift();
+console.log(fruits); // Output: ["Banana"]
+    </code>
+    <p>The <code>shift()</code> method removes the first item from the array.</p>
+    
+    <h3>unshift()</h3>
+    <code>
+fruits.unshift("Grapes");
+console.log(fruits); // Output: ["Grapes", "Banana"]
+    </code>
+    <p>The <code>unshift()</code> method adds an item to the beginning of the array.</p>
+    
+    <h3>slice()</h3>
+    <code>
+const newFruits = fruits.slice(1);
+console.log(newFruits); // Output: ["Banana"]
+    </code>
+    <p>The <code>slice()</code> method creates a shallow copy of a portion of the array, starting from the specified index.</p>
+    
+    <h3>splice()</h3>
+    <code>
+fruits.splice(1, 1, "Pineapple");
+console.log(fruits); // Output: ["Grapes", "Pineapple"]
+    </code>
+    <p>The <code>splice()</code> method changes the contents of an array by removing or replacing existing elements.</p>
+
+    <h2>3. Iterating Over Arrays</h2>
+    <p>JavaScript provides several methods to iterate over arrays:</p>
+    <h3>map()</h3>
+    <code>
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6]
+    </code>
+    <p>The <code>map()</code> method creates a new array populated with the results of calling a provided function on every element in the array.</p>
+    
+    <h3>filter()</h3>
+    <code>
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // Output: [2]
+    </code>
+    <p>The <code>filter()</code> method creates a new array with all elements that pass the test implemented by the provided function.</p>
+    
+    <h3>reduce()</h3>
+    <code>
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(sum); // Output: 6
+    </code>
+    <p>The <code>reduce()</code> method applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value.</p>
+    
+    <h3>forEach()</h3>
+    <code>
+numbers.forEach(num => console.log(num));
+/* Output:
+1
+2
+3
+*/
+    </code>
+    <p>The <code>forEach()</code> method executes a provided function once for each array element.</p>
+
+    <h2>4. Object Iteration</h2>
+    <p>To iterate over objects, you can use:</p>
+    <h3>for...in</h3>
+    <code>
+const person = {
+    name: "John",
+    age: 30,
+    isMarried: true
+};
+
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+/* Output:
+name: John
+age: 30
+isMarried: true
+*/
+    </code>
+    <p>The <code>for...in</code> loop iterates over the enumerable properties of an object.</p>
+    
+    <h3>Object.keys()</h3>
+    <code>
+const keys = Object.keys(person);
+console.log(keys); // Output: ["name", "age", "isMarried"]
+    </code>
+    <p>The <code>Object.keys()</code> method returns an array of a given object's own enumerable property names.</p>
+    
+    <h3>Object.values()</h3>
+    <code>
+const values = Object.values(person);
+console.log(values); // Output: ["John", 30, true]
+    </code>
+    <p>The <code>Object.values()</code> method returns an array of a given object's own enumerable property values.</p>
+
+    <h2>5. Common Errors and Invalid Options</h2>
+    
+    <h3>1. Invalid Method on Undefined</h3>
+    <div class="error">
+        <code>
+let undefinedVariable;
+undefinedVariable.push(1); // Error: Cannot read properties of undefined (reading 'push')
+        </code>
+    </div>
+    <p>If you try to call an array method like <code>push()</code> on an undefined variable, it will result in an error because the variable is not defined or initialized.</p>
+
+    <h3>2. Invalid Method on Non-Array</h3>
+    <div class="error">
+        <code>
+let person = {name: "John", age: 30};
+person.push("New item"); // Error: person.push is not a function
+        </code>
+    </div>
+    <p>Methods like <code>push()</code> are only applicable to arrays. Calling them on non-array objects, such as a plain object, will throw an error.</p>
+
+    <h3>3. Invalid Object Key Access</h3>
+    <div class="error">
+        <code>
+const person = {name: "John"};
+console.log(person."name"); // Error: Unexpected string
+        </code>
+    </div>
+    <p>When accessing object properties, use dot notation correctly. Accessing a property with quotes around the key, as shown above, will cause a syntax error.</p>
+    
+    <h3>4. Invalid Index in Array Methods</h3>
+    <div class="error">
+        <code>
+let fruits = ["Apple", "Banana", "Cherry"];
+console.log(fruits.slice(-5)); // Error: slice index out of bounds (only -3 available)
+        </code>
+    </div>
+    <p>Attempting to use an invalid index in array methods like <code>slice()</code> can lead to unexpected results. Negative indices are allowed, but out-of-bounds negative indices will return empty arrays.</p>
+
+    <h3>5. for...in with Arrays</h3>
+    <div class="error">
+        <code>
+const numbers = [1, 2, 3];
+for (let index in numbers) {
+    console.log(numbers[index]);
+}
+/* Output:
+1
+2
+3
+*/
+        </code>
+    </div>
+    <p>Although you can iterate over arrays with <code>for...in</code>, it's not recommended because it also iterates over array methods and properties, which could lead to unexpected results. Use <code>forEach()</code> or other array methods instead.</p>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 30px;
+        }
+        h1, h2 {
+            color: #ba3e00;
+            padding-top: 30px;
+        }
+        h3 {
+            padding-top: 20px;
+            color: #235ff8;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre; /* Ensures code is displayed in new lines */
+            overflow-x: auto;
+        }
+        .error {
+            background: #ffe6e6;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Functions</h1>
+
+    <h2>1. Function Declaration</h2>
+    <p>A named function that can be called before its definition.</p>
+    <code>
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+
+    <h2>2. Function Expression</h2>
+    <p>A function assigned to a variable. These are not hoisted.</p>
+    <code>
+const greet = function(name) {
+    return "Hello, " + name + "!";
+};
+
+console.log(greet("Bob")); // Output: Hello, Bob!
+    </code>
+    <div class="error">
+        <code>
+// Error: Cannot call a function expression before it's defined
+console.log(greet("Charlie")); // ReferenceError: greet is not defined
+const greet = function(name) {
+    return "Hello, " + name + "!";
+};
+        </code>
+    </div>
+
+    <h2>3. Arrow Functions</h2>
+    <p>A concise way to write functions. Does not bind its own `this` context.</p>
+    <code>
+const greet = (name) => {
+    return "Hello, " + name + "!";
+};
+
+console.log(greet("Dave")); // Output: Hello, Dave!
+    </code>
+    <p>For single-expression functions, the `return` keyword can be omitted:</p>
+    <code>
+const greet = name => "Hello, " + name + "!";
+
+console.log(greet("Eve")); // Output: Hello, Eve!
+    </code>
+
+    <h2>4. Callback Functions</h2>
+    <p>Passing a function as an argument to another function.</p>
+    <code>
+function processUserInput(callback) {
+    const name = "Frank";
+    callback(name);
+}
+
+processUserInput(function(name) {
+    console.log("Hello, " + name + "!"); // Output: Hello, Frank!
+});
+    </code>
+
+    <h3>Example Combining Concepts</h3>
+    <p>A real-world use case combining function types:</p>
+    <code>
+// Arrow function as a callback in an array method
+const numbers = [1, 2, 3, 4, 5];
+const squared = numbers.map(num => num * num);
+
+console.log(squared); // Output: [1, 4, 9, 16, 25]
+    </code>
+    <div class="error">
+        <code>
+// Error: Missing parameters in an arrow function
+const greet = name => "Hello!";
+// Incorrect call
+console.log(greet()); // Output: Hello undefined!
+        </code>
+    </div>
+</body>
+</html>

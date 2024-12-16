@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 30px;
+        }
+        h1, h2 {
+            color: #ba3e00;
+            padding-top: 30px;
+        }
+        h3{
+            padding-top: 20px;
+            color: #235ff8;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre; /* Ensures code is displayed in new lines */
+            overflow-x: auto;
+        }
+        .error {
+            background: #ffe6e6;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Basics</h1>
+
+    <h2>1. Syntax: Understanding Variables and Constants</h2>
+    <p>In JavaScript, you can declare variables and constants using <b>var</b>, <b>let</b>, and <b>const</b>.</p>
+
+    <h3>var</h3>
+    <p><b>var</b> is function-scoped and can be re-declared and updated. It is less commonly used now due to <b>let</b> and <b>const</b>.</p>
+    <code>
+        var name = "John";
+        console.log(name); // Output: John
+        name = "Doe";
+        console.log(name); // Output: Doe
+    </code>
+
+    <h3>let</h3>
+    <p><b>let</b> is block-scoped and can be updated but not re-declared in the same scope.</p>
+    <code>
+        let age = 30;
+        console.log(age); // Output: 30
+        age = 31;
+        console.log(age); // Output: 31
+    </code>
+    <div class="error">
+        <code>
+            // Error: Cannot re-declare a variable with let in the same scope
+            let age = 40; // SyntaxError
+        </code>
+    </div>
+
+    <h3>const</h3>
+    <p><b>const</b> is block-scoped and cannot be updated or re-declared. Use it for values that should not change.</p>
+    <code>
+        const country = "India";
+        console.log(country); // Output: India
+    </code>
+    <div class="error">
+        <code>
+            // Error: Assignment to a constant variable
+            country = "USA"; // TypeError
+        </code>
+    </div>
+
+    <h2>2. Data Types</h2>
+    <p>JavaScript supports various data types, including primitive and non-primitive types.</p>
+
+    <h3>Primitive Data Types</h3>
+    <ul>
+        <li><b>String:</b> Used to store text.</li>
+        <li><b>Number:</b> Used to store numbers.</li>
+        <li><b>Boolean:</b> Represents true or false.</li>
+        <li><b>Null:</b> Represents an empty or non-existent value.</li>
+        <li><b>Undefined:</b> Represents a variable declared but not assigned a value.</li>
+    </ul>
+    <code>
+        // Strings
+        let greeting = "Hello, World!";
+        console.log(greeting); // Output: Hello, World!
+
+        // Numbers
+        let score = 100;
+        console.log(score); // Output: 100
+
+        // Boolean
+        let isActive = true;
+        console.log(isActive); // Output: true
+    </code>
+    <div class="error">
+        <code>
+// Error: Attempting to use undefined without declaration
+console.log(notDefined); // ReferenceError
+        </code>
+    </div>
+
+    <h3>Non-Primitive Data Types</h3>
+    <p>Objects and arrays are examples of non-primitive types.</p>
+    <code>
+// Objects
+let user = { name: "John", age: 30 };
+console.log(user.name); // Output: John
+
+// Arrays
+let colors = ["Red", "Green", "Blue"];
+console.log(colors[1]); // Output: Green
+    </code>
+
+    <h2>3. Operators</h2>
+    <p>JavaScript operators are used to perform operations on values and variables.</p>
+
+    <h3>Arithmetic Operators</h3>
+    <p>Used to perform basic mathematical operations.</p>
+    <code>
+let a = 10, b = 5;
+console.log(a + b); // Output: 15
+console.log(a - b); // Output: 5
+console.log(a * b); // Output: 50
+console.log(a / b); // Output: 2
+    </code>
+
+    <h3>Assignment Operators</h3>
+    <p>Used to assign values to variables.</p>
+    <code>
+let x = 10;
+x += 5; // x = x + 5
+console.log(x); // Output: 15
+    </code>
+    <div class="error">
+        <code>
+// Error: Using const with an assignment operator
+const y = 10;
+y += 5; // TypeError: Assignment to constant variable
+        </code>
+    </div>
+
+    <h3>Comparison Operators</h3>
+    <p>Used to compare two values.</p>
+    <code>
+console.log(10 == "10"); // Output: true (value comparison)
+console.log(10 === "10"); // Output: false (value and type comparison)
+console.log(10 > 5); // Output: true
+    </code>
+
+    <h3>Logical Operators</h3>
+    <p>Used to combine conditions.</p>
+    <code>
+let isLoggedIn = true;
+let isAdmin = false;
+console.log(isLoggedIn && isAdmin); // Output: false
+console.log(isLoggedIn || isAdmin); // Output: true
+console.log(!isLoggedIn); // Output: false
+    </code>
+
+    <h3>Ternary Operator</h3>
+    <p>Used as a shorthand for conditional expressions.</p>
+    <code>
+let age = 20;
+let status = age >= 18 ? "Adult" : "Minor";
+console.log(status); // Output: Adult
+    </code>
+
+</body>
+</html>
