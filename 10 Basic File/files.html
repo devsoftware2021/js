@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic File I/O (Optional)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .note {
+            background: #e6f7ff;
+            border-left: 5px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .error {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .error-code {
+            display: block;
+            background: #ffe6e6;
+            padding: 10px;
+            border: 1px solid #ffcccc;
+            margin-bottom: 10px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic File I/O (Optional)</h1>
+
+    <h2>1. Browser-based File Operations</h2>
+
+    <h3>a. Using FileReader in the Browser</h3>
+    <p>The <code>FileReader</code> API allows you to read the contents of a file chosen by the user.</p>
+    <pre>
+    <code>
+    &lt;input type="file" id="fileInput" /&gt;
+    &lt;pre id="fileContent"&gt;&lt;/pre&gt;
+
+    &lt;script&gt;
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    document.getElementById('fileContent').textContent = e.target.result;
+                };
+
+                reader.onerror = function(e) {
+                    console.error("Error reading file:", e);
+                };
+
+                reader.readAsText(file);
+            }
+        });
+    &lt;/script&gt;
+    </code>
+    </pre>
+
+    <h3>b. Using Blob in the Browser</h3>
+    <p>The <code>Blob</code> object represents binary data, which can be used for storing and handling large chunks of data.</p>
+    <pre>
+    <code>
+    const data = new Blob(["Hello, world!"], { type: "text/plain" });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(data);
+    link.download = "hello.txt"; // File name
+    link.click();
+    </code>
+    </pre>
+
+    <h2>2. Node.js File Operations</h2>
+
+    <h3>a. Reading a File in Node.js</h3>
+    <p>In Node.js, you can use the <code>fs.readFile()</code> method to read the contents of a file asynchronously.</p>
+    <pre>
+    <code>
+    const fs = require('fs');
+
+    fs.readFile('example.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading file:", err);
+            return;
+        }
+        console.log("File content:", data);
+    });
+    </code>
+    </pre>
+
+    <h3>b. Writing a File in Node.js</h3>
+    <p>You can write data to a file using <code>fs.writeFile()</code>.</p>
+    <pre>
+    <code>
+    const fs = require('fs');
+
+    const content = "Hello, this is a test file!";
+
+    fs.writeFile('output.txt', content, (err) => {
+        if (err) {
+            console.error("Error writing file:", err);
+            return;
+        }
+        console.log("File written successfully.");
+    });
+    </code>
+    </pre>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .note {
+            background: #e6f7ff;
+            border-left: 5px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript DOM Manipulation</h1>
+
+    <p>The Document Object Model (DOM) represents the structure of a web page and allows JavaScript to interact with and modify it dynamically. DOM manipulation is essential for creating interactive web applications.</p>
+
+    <h2>1. Selecting Elements</h2>
+    <p>To manipulate elements in the DOM, you first need to select them. The most common methods are:</p>
+    <ul>
+        <li><code>document.querySelector()</code>: Selects the first element that matches a CSS selector.</li>
+        <li><code>document.querySelectorAll()</code>: Selects all elements that match a CSS selector.</li>
+        <li><code>document.getElementById()</code>: Selects an element by its ID.</li>
+        <li><code>document.getElementsByClassName()</code>: Selects elements by their class name.</li>
+        <li><code>document.getElementsByTagName()</code>: Selects elements by their tag name.</li>
+    </ul>
+    <h3>Example: Selecting Elements</h3>
+    <code>
+<!-- HTML Structure -->
+<div id="main" class="container">
+    <p class="text">Hello, World!</p>
+    <p class="text">Welcome to JavaScript DOM Manipulation.</p>
+</div>
+
+<script>
+    const mainDiv = document.getElementById('main'); // Select by ID
+    const paragraphs = document.querySelectorAll('.text'); // Select by class
+
+    console.log(mainDiv); // Logs the div with id "main"
+    console.log(paragraphs); // Logs a NodeList of paragraphs with class "text"
+</script>
+
+    const mainDiv = document.getElementById('main'); // Select by ID
+    const paragraphs = document.querySelectorAll('.text'); // Select by class
+
+    console.log(mainDiv); // Logs the div with id "main"
+    console.log(paragraphs); // Logs a NodeList of paragraphs with class "text"
+    </code>
+
+    <h2>2. Modifying Elements</h2>
+    <p>Once an element is selected, you can change its content, attributes, or styles.</p>
+    <h3>Example: Changing Content and Styles</h3>
+    <code>
+<!-- HTML Structure -->
+<p id="message">Original Message</p>
+
+<script>
+    const message = document.getElementById('message');
+    message.textContent = "Updated Message"; // Changes the text
+    message.style.color = "blue"; // Changes the text color to blue
+    message.style.fontSize = "20px"; // Changes the font size
+</script>
+    const message = document.getElementById('message');
+    message.textContent = "Updated Message"; // Changes the text
+    message.style.color = "blue"; // Changes the text color to blue
+    message.style.fontSize = "20px"; // Changes the font size
+    </code>
+
+    <h2>3. Creating and Adding Elements</h2>
+    <p>New elements can be dynamically created and added to the DOM using <code>document.createElement()</code> and methods like <code>appendChild()</code> or <code>append()</code>.</p>
+    <h3>Example: Creating and Appending Elements</h3>
+    <code>
+<!-- HTML Structure -->
+<ul id="list"></ul>
+
+<script>
+    const list = document.getElementById('list');
+    const newItem = document.createElement('li'); // Create a new <li> element
+    newItem.textContent = "New List Item"; // Add content to the <li>
+    list.appendChild(newItem); // Append the <li> to the <ul>
+</script>
+
+    const list = document.getElementById('list');
+    const newItem = document.createElement('li'); // Create a new li element
+    newItem.textContent = "New List Item"; // Add content to the li
+    list.appendChild(newItem); // Append the li to the ul
+    </code>
+    <p>Result: The unordered list (<code>&lt;ul&gt;</code>) now contains a new list item (<code>&lt;li&gt;</code>).</p>
+
+    <h2>4. Removing Elements</h2>
+    <p>Elements can be removed using the <code>remove()</code> method or <code>removeChild()</code> on the parent element.</p>
+    <h3>Example: Removing an Element</h3>
+    <code>
+<!-- HTML Structure -->
+<div id="container">
+    <p id="removeMe">Remove this paragraph</p>
+</div>
+
+<script>
+    const elementToRemove = document.getElementById('removeMe');
+    elementToRemove.remove(); // Removes the <p> element from the DOM
+</script>
+    const elementToRemove = document.getElementById('removeMe');
+    elementToRemove.remove(); // Removes the <p> element from the DOM
+    </code>
+
+    <h2>5. Event Listeners</h2>
+    <p>You can attach event listeners to elements to make them interactive.</p>
+    <h3>Example: Adding an Event Listener</h3>
+    <code>
+<!-- HTML Structure -->
+<button id="clickButton">Click Me!</button>
+
+<script>
+    const button = document.getElementById('clickButton');
+    button.addEventListener('click', () => {
+        alert('Button clicked!');
+    });
+</script>
+    const button = document.getElementById('clickButton');
+    button.addEventListener('click', () => {
+        alert('Button clicked!');
+    });
+    </code>
+    <p>When the button is clicked, an alert message will be displayed.</p>
+
+    <h2>6. Summary</h2>
+    <ul>
+        <li>DOM manipulation is a core part of creating dynamic web applications.</li>
+        <li>Use <code>querySelector</code> and related methods to select elements efficiently.</li>
+        <li>Modify elements using properties like <code>textContent</code>, <code>innerHTML</code>, and <code>style</code>.</li>
+        <li>Create and append new elements dynamically with <code>createElement()</code>.</li>
+        <li>Handle interactivity by attaching event listeners to elements.</li>
+    </ul>
+    <div class="note">
+        <strong>Note:</strong> While DOM manipulation is browser-specific, understanding it can help when using Node.js tools that simulate browser-like behavior.
+    </div>
+</body>
+</html>

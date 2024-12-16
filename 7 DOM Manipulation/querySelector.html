@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector Example</title>
+    <style>
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Hello, World!</h1>
+    <p class="info">This is a paragraph.</p>
+    <p class="info">Another paragraph.</p>
+    <script>
+        // Select the first paragraph with the "info" class
+        const paragraph = document.querySelector('.info');
+        paragraph.textContent = "This content was updated!";
+        paragraph.classList.add('highlight'); // Add a CSS class
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Debugging in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .note {
+            background: #e6f7ff;
+            border-left: 5px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .error {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        .error-code {
+            display: block;
+            background: #ffe6e6;
+            padding: 10px;
+            border: 1px solid #ffcccc;
+            margin-bottom: 10px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic Debugging in JavaScript</h1>
+
+    <p>Debugging is essential for finding and fixing errors in your code. Below are three common methods for debugging JavaScript.</p>
+
+    <h2>1. Using <code>console.log()</code> for Debugging</h2>
+    <p>The <code>console.log()</code> method prints messages or variable values to the browser’s or Node.js’s console, making it the simplest way to understand what's happening in your code.</p>
+    <h3>Example</h3>
+    <code>
+function add(a, b) {
+    console.log("Inputs:", a, b); // Log inputs
+    const result = a + b;
+    console.log("Result:", result); // Log result
+    return result;
+}
+
+add(5, 3);
+/* Console Output:
+Inputs: 5 3
+Result: 8
+*/
+    </code>
+
+    <h3>Tips:</h3>
+    <ul>
+        <li>Use <code>console.warn()</code> for warnings and <code>console.error()</code> for errors.</li>
+        <li>Combine with <code>JSON.stringify()</code> for inspecting complex objects:</li>
+    </ul>
+    <code>
+console.log("User Data:", JSON.stringify(userData, null, 2));
+    </code>
+
+    <h2>2. Inspecting Errors: Understanding Stack Traces</h2>
+    <p>When an error occurs, JavaScript generates a stack trace to show the sequence of function calls leading to the error. These are visible in the console.</p>
+    <h3>Example: Common Error</h3>
+    <code>
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Division by zero is not allowed");
+    }
+    return a / b;
+}
+
+try {
+    divide(10, 0); // This will throw an error
+} catch (error) {
+    console.error("Error caught:", error.message);
+    console.error("Stack Trace:", error.stack);
+}
+/* Console Output:
+<span class="error">Error caught: Division by zero is not allowed</span>
+<span class="error-code">Stack Trace: 
+Error: Division by zero is not allowed
+    at divide (script:2:15)
+    at script:6:5
+</span>
+*/
+    </code>
+
+    <h3>Reading a Stack Trace:</h3>
+    <ul>
+        <li><strong>Error Message:</strong> The description of the error.</li>
+        <li><strong>Function Call Chain:</strong> The sequence of calls that led to the error, starting from the most recent.</li>
+    </ul>
+
+    <h2>3. Using the <code>debugger</code></h2>
+    <p>The <code>debugger</code> statement and browser/Node.js developer tools allow you to pause code execution, inspect variables, and step through code.</p>
+
+    <h3>In Browsers</h3>
+    <ul>
+        <li>Open Developer Tools (F12 or right-click > "Inspect").</li>
+        <li>Go to the <strong>Sources</strong> tab.</li>
+        <li>Set <strong>Breakpoints</strong> by clicking the line number in your script.</li>
+        <li>Use the <strong>Step Over</strong>, <strong>Step Into</strong>, and <strong>Step Out</strong> buttons to navigate the code.</li>
+    </ul>
+    <h3>Example</h3>
+    <code>
+function multiply(a, b) {
+    debugger; // Execution will pause here
+    return a * b;
+}
+
+multiply(4, 5);
+    </code>
+    <p>When running this code in the browser console, execution pauses at <code>debugger</code>. You can inspect <code>a</code> and <code>b</code> in the developer tools.</p>
+
+    <h3>In Node.js</h3>
+    <p>Run your script with the <code>--inspect</code> flag:</p>
+    <code>
+node --inspect yourScript.js
+    </code>
+    <p>Open Chrome and navigate to <code>chrome://inspect</code>.</p>
+    <p>Click <strong>"Open dedicated DevTools for Node"</strong> to debug.</p>
+
+    <h2>Summary of Tools:</h2>
+    <ul>
+        <li><code>console.log()</code>: Quick and simple for printing variable values and messages.</li>
+        <li><strong>Error Stack Traces:</strong> Help identify where and why errors occur.</li>
+        <li><strong>Debugger:</strong> Powerful tool for real-time inspection and stepping through code.</li>
+    </ul>
+
+    <div class="note">
+        <strong>Note:</strong> Debugging is an essential skill for writing and maintaining clean, efficient code.
+    </div>
+</body>
+</html>

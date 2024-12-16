@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Modules</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        code {
+            display: block;
+            background: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .note {
+            background: #e6f7ff;
+            border-left: 5px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Modules</h1>
+
+    <h2>1. ES6 Modules</h2>
+    <p>ES6 Modules allow you to divide your JavaScript code into reusable pieces.</p>
+    <ul>
+        <li><strong>Import</strong>: Bring functionality from another file.</li>
+        <li><strong>Export</strong>: Share functionality from the current file.</li>
+    </ul>
+
+    <h3>Example: Exporting Functions and Variables</h3>
+    <pre>
+/* File: mathUtils.js */
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+
+// Default export
+export default function multiply(a, b) {
+    return a * b;
+}
+    </pre>
+
+    <h3>Example: Importing in Another File</h3>
+    <pre>
+/* File: app.js */
+import multiply, { add, subtract } from './mathUtils.js';
+
+console.log(add(2, 3));         // Output: 5
+console.log(subtract(5, 3));    // Output: 2
+console.log(multiply(4, 3));    // Output: 12
+    </pre>
+
+    <h3>Important Notes:</h3>
+    <ul>
+        <li>Use the <code>type="module"</code> attribute in HTML when including ES6 module scripts:
+            <pre>
+<script type="module" src="app.js"></script>
+            </pre>
+        </li>
+        <li>ES6 modules are supported in modern browsers and Node.js (version 12+).</li>
+    </ul>
+
+    <hr>
+
+    <h2>2. CommonJS Modules</h2>
+    <p>CommonJS Modules are used in Node.js for managing dependencies and modularizing code.</p>
+    <ul>
+        <li><strong>require()</strong>: Import modules in Node.js.</li>
+        <li><strong>module.exports</strong>: Export functionality in Node.js.</li>
+    </ul>
+
+    <h3>Example: Exporting Functions and Variables</h3>
+    <pre>
+// File: mathUtils.js
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+
+const multiply = (a, b) => a * b;
+
+// Export functions
+module.exports = {
+    add,
+    subtract,
+    multiply,
+};
+    </pre>
+
+    <h3>Example: Importing in Another File</h3>
+    <pre>
+// File: app.js
+const { add, subtract, multiply } = require('./mathUtils');
+
+console.log(add(2, 3));         // Output: 5
+console.log(subtract(5, 3));    // Output: 2
+console.log(multiply(4, 3));    // Output: 12
+    </pre>
+
+    <h3>Key Points:</h3>
+    <ul>
+        <li>CommonJS is the default module system in Node.js.</li>
+        <li>Use <code>require()</code> to import and <code>module.exports</code> to export functionality.</li>
+        <li>CommonJS does not work natively in browsers but can be bundled using tools like Webpack.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Summary: ES6 vs. CommonJS Modules</h2>
+    <table border="1">
+        <tr>
+            <th>Feature</th>
+            <th>ES6 Modules</th>
+            <th>CommonJS Modules</th>
+        </tr>
+        <tr>
+            <td>Export Syntax</td>
+            <td><code>export</code> and <code>export default</code></td>
+            <td><code>module.exports</code></td>
+        </tr>
+        <tr>
+            <td>Import Syntax</td>
+            <td><code>import</code></td>
+            <td><code>require()</code></td>
+        </tr>
+        <tr>
+            <td>Environment</td>
+            <td>Browser and Node.js</td>
+            <td>Node.js</td>
+        </tr>
+        <tr>
+            <td>File Extension</td>
+            <td>Use <code>.js</code> (with <code>type="module"</code> in HTML)</td>
+            <td>Use <code>.js</code></td>
+        </tr>
+    </table>
+</body>
+</html>

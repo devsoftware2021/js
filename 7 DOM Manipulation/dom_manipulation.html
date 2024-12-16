@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Example</title>
+</head>
+<body>
+    <ul id="task-list">
+        <li>Task 1</li>
+        <li>Task 2</li>
+    </ul>
+    <script>
+        // Select the unordered list
+        const taskList = document.querySelector('#task-list');
+
+        // Create a new list item
+        const newTask = document.createElement('li');
+        newTask.textContent = "Task 3";
+
+        // Append the new task to the list
+        taskList.appendChild(newTask);
+    </script>
+</body>
+</html>
